@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=auto_hide_tabbar
+X-Python-2-Compatible=false
+X-Krita-Manual=Manual.html
+Name=Auto Hide Tab Bar
+Comment=Auto hides the tab bar when there's only one document open
