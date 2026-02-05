@@ -1,7 +1,12 @@
 from krita import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtCore import *
+try:
+    from PyQt6.QtWidgets import *
+    from PyQt6.QtGui import *
+    from PyQt6.QtCore import *
+except:
+    from PyQt5.QtWidgets import *
+    from PyQt5.QtGui import *
+    from PyQt5.QtCore import *
 
 # https://github.com/qt/qtbase/blob/0d2a7a30ab14b0d8eefea30321934683315a35d2/src/widgets/widgets/qtabbar.cpp#L1625
 class ZeroStyle(QProxyStyle):
@@ -25,7 +30,7 @@ class AutoHideTabBarExtension(Extension):
             q_window = window.qwindow()
             q_stacked_widget = q_window.centralWidget()
             q_mdi_area = q_stacked_widget.findChild(QMdiArea)
-            q_tab_bar = q_mdi_area.findChild(QTabBar, None, Qt.FindDirectChildrenOnly) # Recursive search here can segfault in subwindow mode, for whatever reason.
+            q_tab_bar = q_mdi_area.findChild(QTabBar, None, Qt.FindChildOption.FindDirectChildrenOnly) # Recursive search here can segfault in subwindow mode, for whatever reason.
             
             if q_tab_bar is None: return
             
